@@ -1,0 +1,66 @@
+#include <stdio.h> 
+void display(int arr[], int size) { 
+    printf("Elements are: "); 
+    for (int i = 0; i < size; i++) { 
+        printf("%d  ", arr[i]); 
+    } 
+    printf("\n"); 
+} 
+ 
+void push(int arr[], int *top, int 
+size) { 
+    *top = *top + 1; 
+    if (*top == size) { 
+        printf("\n****Stack is 
+Overflowing****\n\n"); 
+        *top = *top - 1; // Revert the 
+increment 
+        return; 
+    } 
+    printf("Enter element to be 
+pushed: "); 
+    scanf("%d", &arr[*top]); 
+} 
+ 
+void pop(int *top) { 
+    if (*top == -1) { 
+        printf("\n****Stack is 
+Underflowing****\n\n"); 
+        return; 
+    } 
+    printf("Popped lastly entered 
+element\n"); 
+    *top = *top - 1; 
+} 
+ 
+int main() { 
+    static int arr[10]; 
+    int ch = 0; // Initialize ch 
+    int size; 
+    int top = -1; 
+    printf("Enter size of the 
+\"Stack\": "); 
+    scanf("%d", &size); 
+    printf("Press \"1\" to 
+PUSH\nPress \"2\" to POP\nPress 
+\"-1\" to EXIT\n\n"); 
+    while (ch != -1) { 
+        printf("Enter your choice: "); 
+        scanf("%d", &ch); 
+        switch (ch) { 
+            case 1: 
+                push(arr, &top, size); 
+                display(arr, top + 1); // 
+Correct display call 
+                break; 
+            case 2: 
+                pop(&top); 
+                display(arr, top + 1); // 
+Correct display call 
+                break; 
+        } 
+    } 
+    display(arr, top + 1); // Correct 
+display call 
+    return 0; 
+} 
