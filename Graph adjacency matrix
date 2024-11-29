@@ -1,0 +1,47 @@
+ #include <stdio.h>
+#define MAX 100
+
+void createAdjMatrix(int adjMatrix[MAX][MAX], int vertices, int edges) {
+    // Initialize the adjacency matrix to 0
+    for (int i = 0; i < vertices; i++) {
+        for (int j = 0; j < vertices; j++) {
+            adjMatrix[i][j] = 0;
+        }
+    }
+
+    printf("Enter the edges (start_vertex end_vertex):\n");
+    for (int i = 0; i < edges; i++) {
+        int start, end;
+        scanf("%d %d", &start, &end);
+
+        // For undirected graph, mark both (start, end) and (end, start)
+        adjMatrix[start][end] = 1;
+        adjMatrix[end][start] = 1; // Remove this line for directed graph
+    }
+}
+
+void displayAdjMatrix(int adjMatrix[MAX][MAX], int vertices) {
+    printf("\nAdjacency Matrix:\n");
+    for (int i = 0; i < vertices; i++) {
+        for (int j = 0; j < vertices; j++) {
+            printf("%d ", adjMatrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int adjMatrix[MAX][MAX];
+    int vertices, edges;
+
+    printf("Enter the number of vertices: ");
+    scanf("%d", &vertices);
+
+    printf("Enter the number of edges: ");
+    scanf("%d", &edges);
+
+    createAdjMatrix(adjMatrix, vertices, edges);
+    displayAdjMatrix(adjMatrix, vertices);
+
+    return 0;
+}
