@@ -27,7 +27,7 @@ int calculateHeight(struct Node* root) {
     int leftHeight = calculateHeight(root->left);   // Height of left subtree
     int rightHeight = calculateHeight(root->right); // Height of right subtree
 
-    return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight); // Return the max height + 1 for root
+    return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight); 
 }
 
 // Main Function
