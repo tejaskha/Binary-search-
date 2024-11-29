@@ -1,0 +1,103 @@
+#include<stdio.h> 
+#include<string.h> 
+struct shopList { 
+    int id; 
+    char Pname[20]; 
+    int price; 
+}; 
+void delP(struct shopList *PL, int 
+*Nprod); 
+void insertP(struct shopList *PL, 
+int *Nprod); 
+int main() { 
+    struct shopList PL[20]; 
+    int i, n; 
+    int j = 1; 
+    printf("Enter how many 
+products you are buying: "); 
+    scanf("%d", &n); 
+    for (i = 0; i < n; i++) { 
+        printf("Product number: 
+\"%d\"\n", j); 
+        printf("Enter product name: 
+"); 
+        scanf("%s", PL[i].Pname); 
+        printf("Enter product price: 
+"); 
+        scanf("%d", &PL[i].price); 
+        printf("Enter product ID: "); 
+        scanf("%d", &PL[i].id); 
+        j++; 
+    } 
+    printf("\n***Your products in 
+kart are following***\n"); 
+    printf("\nNo.\tName\tPrice\tID 
+\n"); 
+    for (i = 0; i < n; i++) { 
+        
+printf("%d\t%s\t%d\t%d\t\n", i + 
+1, PL[i].Pname, PL[i].price, 
+PL[i].id); 
+    } 
+    int c; 
+    printf("Press 1 to add 
+product\nPress 2 to delete 
+product\nPress -1 to Exit\n"); 
+    int Nprod = n; 
+    while (c != -1) { 
+        printf("Enter your choice: "); 
+        scanf("%d", &c); 
+        switch (c) { 
+            case 1: 
+                insertP(PL, &Nprod); 
+                break; 
+            case 2: 
+                delP(PL, &Nprod); 
+                break; 
+        } 
+    } 
+    return 0; 
+} 
+void delP(struct shopList *PL, int 
+*Nprod) { 
+    int i, pos; 
+    printf("Enter index of the 
+product to be deleted: "); 
+    scanf("%d", &pos); 
+    for (i = pos; i < *Nprod - 1; i++) { 
+        PL[i] = PL[i + 1]; 
+    } 
+    (*Nprod)--; 
+    printf("\nNo.\tName\tPrice\tID 
+\n"); 
+    for (i = 0; i < *Nprod; i++) { 
+        
+printf("%d\t%s\t%d\t%d\t\n", i + 
+1, PL[i].Pname, PL[i].price, 
+PL[i].id); 
+    } 
+} 
+void insertP(struct shopList *PL, 
+int *Nprod) { 
+    int i; 
+    printf("Enter product to be 
+inserted: "); 
+    printf("Product number: 
+\"%d\"\n", *Nprod + 1); 
+    printf("Enter product name: "); 
+    scanf("%s", PL[*Nprod].Pname); 
+    printf("Enter product price: "); 
+    scanf("%d", 
+&PL[*Nprod].price); 
+    printf("Enter product ID: "); 
+    scanf("%d", &PL[*Nprod].id); 
+    (*Nprod)++; 
+    printf("\nNo.\tName\tPrice\tID 
+\n"); 
+    for (i = 0; i < *Nprod; i++) { 
+        
+printf("%d\t%s\t%d\t%d\t\n", i + 
+1, PL[i].Pname, PL[i].price, 
+PL[i].id); 
+    } 
+}
