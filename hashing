@@ -1,0 +1,91 @@
+#include<stdio.h> 
+int Hdivision(int ele,int size) 
+{ 
+ int key; 
+ key=ele%size; 
+ return key; 
+} 
+int HmidSquare(int ele) 
+{ 
+ int i=ele; 
+ int noOfDigit=0,n; 
+ while(i!=0) 
+ { 
+  noOfDigit++; 
+  i=i/10; 
+ } 
+ return noOfDigit; 
+ 
+} 
+void insert(int arr[],int 
+size,int ele) 
+{ 
+ int index; 
+ index=Hdivision(ele,s
+ ize); 
+ arr[index]=ele; 
+} 
+int search(int arr[],int size,int 
+ele) 
+{ 
+ int i; 
+ for(i=0;i<size-1;i++) 
+ { 
+  if(arr[i]==ele) 
+  return i; 
+ } 
+ return -1; 
+} 
+int main() 
+{ 
+ int arr[10],a,size=10; 
+ int ch=1; 
+ printf("%d",HmidSqu
+ are(3)); 
+ printf("ashish tone"); 
+ while(ch!=-1) 
+ { 
+  printf("Press 
+1 to insert\nPress 2 to 
+search\n"); 
+  printf("Enter 
+choice: "); 
+ 
+ scanf("%d",&ch); 
+  switch(ch) 
+  { 
+    case 
+1: printf("Enter the element: 
+"); 
+    
+scanf("%d",&a); 
+    
+insert(arr,size,a); 
+    
+printf("\nElement plased at 
+%d 
+index\n",Hdivision(a,size)); 
+    
+break; 
+    case 
+2: printf("Enter the element 
+to search: "); 
+    
+scanf("%d",&a); 
+    int 
+tf=search(arr,size,a); 
+    
+if(tf==-1) 
+    
+printf("\nElement not 
+present\n"); 
+    else 
+  
+ printf("\nElement is 
+present at %d\n",tf); 
+    
+break; 
+  } 
+ } 
+ return 0; 
+}
