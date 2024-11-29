@@ -1,0 +1,25 @@
+#include <stdio.h> 
+#include <math.h> 
+int main() { 
+int n, i; 
+f
+ loat sum =0,mean,SD =0; 
+printf("Enter the number of elements: "); 
+scanf("%d",&n); 
+f
+ loat data[n]; 
+printf("Enter the elements: "); 
+for (i = 0; i < n; ++i) { 
+scanf("%f",&data[i]); 
+} 
+for (i = 0; i < n; ++i) { 
+sum = sum + data[i]; 
+} 
+mean = sum / n; 
+for (i = 0; i < n; ++i) { 
+SD = SD + pow(data[i] - mean, 2); 
+} 
+SD=sqrt(SD / n); 
+printf("Standard Deviation = %f\n",SD); 
+return 0; 
+} 
