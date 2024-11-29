@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100
+
+int adjMatrix[MAX][MAX];
+int visited[MAX];
+int queue[MAX];
+int front = -1, rear = -1;
+
+// Push to queue (for BFS)
+void enqueue(int vertex) {
+    if (rear == MAX - 1) {
+        printf("Queue Overflow\n");
+        return;
+    }
+    if (front == -1) front = 0;
+    queue[++rear] = vertex;
+}
+
+// Pop from queue (for BFS)
+int dequeue() {
+    if (front == -1 || front > rear) {
+        return -1;
+    }
+    return queue[front++];
+}
+
+// Check if queue is empty (for BFS)
+int isQueueEmpty() {
+    return front == -1 || front > rear;
+}
+
+// Depth First Search (DFS) Traversal
+void DFS(int vertex, int n) {
+    printf("%d ", vertex);
+    visited[vertex] = 1;
+
+    for (int i = 0; i < n; i++) {
+        if (adjMatrix[vertex][i] == 1 && !visited[i]) {
+            DFS(i, n);
+        }
+    }
+}
+
+// Breadth First Search (BFS) Traversal
+void BFS(int startVertex, int n) {
+    front = rear = -1;
+    for (int i = 0; i < n; i++) visited[i] = 0; // Reset visited array for BFS
+
+    enqueue(startVertex);
+    visited[startVertex] = 1;
+
+    printf("BFS Traversal: ");
+    while (!isQueueEmpty()) {
+        int currentVertex = dequeue();
+        printf("%d ", currentVertex);
+
+        for (int i = 0; i < n; i++) {
+            if (adjMatrix[currentVertex][i] == 1 && !visited[i]) {
+                enqueue(i);
+                visited[i] = 1;
+            }
+        }
+    }
+    printf("\n");
+}
+
+// Main Function
+int main() {
+    int n, edges;
+
+    printf("Enter the number of vertices: ");
+    scanf("%d", &n);
+
+    printf("Enter the number of edges: ");
+    scanf("%d", &edges);
+
+    // Initialize adjacency matrix and visited array
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            adjMatrix[i][j] = 0;
+        }
+        visited[i] = 0;
+    }
+
+    // Input edges
+    printf("Enter the edges (start_vertex end_vertex):\n");
+    for (int i = 0; i < edges; i++) {
+        int u, v;
+        scanf("%d %d", &u, &v);
+        adjMatrix[u][v] = 1; // For directed graph
+        adjMatrix[v][u] = 1; // Uncomment for undirected graph
+    }
+
+    // Perform DFS
+    printf("DFS Traversal: ");
+    for (int i = 0; i < n; i++) visited[i] = 0; // Reset visited array for DFS
+    DFS(0, n); // Start DFS from vertex 0
+    printf("\n");
+
+    // Perform BFS
+    BFS(0, n); // Start BFS from vertex 0
+
+    return 0;
+}
