@@ -1,0 +1,62 @@
+ #include <stdio.h>
+#define MAX 100
+
+int adjMatrix[MAX][MAX]; // Adjacency Matrix
+int visited[MAX];        // Visited Array
+
+// Depth First Search to find connected nodes
+void DFS(int node, int vertices) {
+    printf("%d ", node); // Print the current node
+    visited[node] = 1;   // Mark it as visited
+
+    for (int i = 0; i < vertices; i++) {
+        if (adjMatrix[node][i] == 1 && !visited[i]) {
+            DFS(i, vertices);
+        }
+    }
+}
+
+int main() {
+    int vertices, edges;
+
+    // Input number of vertices and edges
+    printf("Enter the number of vertices: ");
+    scanf("%d", &vertices);
+
+    printf("Enter the number of edges: ");
+    scanf("%d", &edges);
+
+    // Initialize adjacency matrix and visited array
+    for (int i = 0; i < vertices; i++) {
+        for (int j = 0; j < vertices; j++) {
+            adjMatrix[i][j] = 0;
+        }
+        visited[i] = 0;
+    }
+
+    // Input edges
+    printf("Enter the edges (start_vertex end_vertex):\n");
+    for (int i = 0; i < edges; i++) {
+        int start, end;
+        scanf("%d %d", &start, &end);
+        adjMatrix[start][end] = 1; // For directed graph
+        adjMatrix[end][start] = 1; // Uncomment for undirected graph
+    }
+
+    // Input the starting node
+    int startNode;
+    printf("Enter the node to find connected nodes: ");
+    scanf("%d", &startNode);
+
+    // Check if the node is valid
+    if (startNode < 0 || startNode >= vertices) {
+        printf("Invalid node. Node must be between 0 and %d.\n", vertices - 1);
+        return 0;
+    }
+
+    printf("Nodes connected to node %d: ", startNode);
+    DFS(startNode, vertices);
+    printf("\n");
+
+    return 0;
+}
