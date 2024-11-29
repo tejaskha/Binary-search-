@@ -1,0 +1,151 @@
+#include<stdio.h> 
+#include<stdlib.h> 
+#include<string.h> 
+struct prod 
+{ 
+ int id; 
+ char Pname[20]; 
+ int price; 
+ struct prod *next; 
+}; 
+void displayList(struct prod* 
+head) 
+{ 
+ struct prod *ptr=head; 
+ printf("No.\tName\tID\tPr
+ ice\t\n"); 
+ int i=1; 
+    while(ptr!=NULL) 
+    { 
+        
+printf("%d\t%s\t%d\t%d\t\n",i,ptr->Pname,ptr->id,ptr->price); 
+        ptr=ptr->next; 
+        i++; 
+    } 
+    printf("\n"); 
+} 
+ 
+struct prod* insertAtEnd(struct 
+prod* head,char name[],int id,int 
+price) 
+{ 
+    struct prod *newptr; 
+    newptr=(struct 
+prod*)malloc(sizeof(struct prod)); 
+    newptr->id=id; 
+    newptr->price=price; 
+    strcpy(newptr->Pname,name); 
+    struct prod *temp=head; 
+    while(temp->next!=NULL) 
+    { 
+        temp=temp->next; 
+    } 
+    temp->next=newptr; 
+    newptr->next=NULL; 
+    return head; 
+} 
+struct prod* delAtPos(struct 
+prod* head,int pos) 
+{ 
+    struct prod *q,*p; 
+    q=head; 
+    int i; 
+    for(i=1;i<=pos-2;i++) 
+    { 
+        q=q->next; 
+    } 
+    p=q->next; 
+    q->next=p->next; 
+    free(p); 
+    return head; 
+} 
+ 
+int main() { 
+    struct prod *head; 
+    head=(struct 
+prod*)malloc(sizeof(struct prod)); 
+    head->id=111; 
+    head->price=100; 
+    strcpy(head->Pname,"bag"); 
+    head->next=NULL; 
+     
+    int n,i; 
+    int ID,Price; 
+    char Name[15]; 
+    printf("Enter how many 
+products are you buying: "); 
+    scanf("%d",&n); 
+    for(i=0;i<n;i++) 
+    { 
+     printf("%d) Product 
+information: \n",i+1); 
+     printf("\tEnter product 
+name: "); 
+     scanf("%s",Name); 
+     printf("\tEnter product ID: 
+"); 
+     scanf("%d",&ID); 
+     printf("\tEnter product 
+Price: "); 
+     scanf("%d",&Price); 
+    
+ insertAtEnd(head,Name,I
+ D,Price); 
+ } 
+    displayList(head); 
+    int c; 
+    printf("Press 1 to add 
+product\nPress 2 to delete 
+product\nPress -1 to exit\n"); 
+   
+    char nm[10]; 
+    int idd; 
+    int pr; 
+    while(c!=-1) 
+    { 
+     printf("Enter your choice: 
+"); 
+     scanf("%d",&c); 
+     switch(c) 
+     { 
+      case 1: 
+      
+ printf("%d) Product 
+information: \n",i+1); 
+      
+ printf("\tEnter product 
+name: "); 
+      
+ scanf("%s",nm); 
+      
+ printf("\tEnter product ID: 
+"); 
+      
+ scanf("%d",&idd); 
+      
+ printf("\tEnter product 
+Price: "); 
+      
+ scanf("%d",&pr); 
+      
+ head=insertAtEnd(head,n
+ m,idd,pr); 
+      
+ displayList(head); 
+       break; 
+      case 2: 
+      
+ printf("Enter position: "); 
+       int pos; 
+      
+ scanf("%d",&pos); 
+      
+ head=delAtPos(head,pos); 
+      
+ displayList(head); 
+       break; 
+  } 
+ } 
+     
+    return 0; 
+}
