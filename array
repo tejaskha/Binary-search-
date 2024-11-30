@@ -1,0 +1,171 @@
+#include<stdio.h> 
+void atb(int arr[],int *size,int element); 
+void atend(int arr[],int *size,int element); 
+void atmiddle(int arr[],int *size,int element,int 
+pos); 
+void delbeg(int arr[],int *size); 
+void delend(int arr[],int *size); 
+void delpos(int arr[],int *size,int pos); 
+void search(int arr[],int *size,int element); 
+int main() 
+{ 
+   int ch,size,n; 
+   printf("Enter size of array: "); 
+   scanf("%d",&n); 
+ int arr[20]; 
+ printf("Enter %d elements: ",n); 
+ for(int i=0;i<n;i++) 
+    { 
+        scanf("%d",&arr[i]); 
+    } 
+ size=n; 
+ printf("\nPress \"1\" to Add at 
+beginning\n"); 
+  printf("Press \"2\" to 
+Add at end\n"); 
+  printf("Press \"3\" to 
+Add at given position\n"); 
+  printf("Press \"4\" to 
+delete at beginning\n"); 
+  printf("Press \"5\" to 
+delete at end\n"); 
+  printf("Press \"6\" to 
+delete at position\n"); 
+  printf("Press \"-1\" to 
+exit\n\n"); 
+ while(ch !=-1) 
+ { 
+  printf("Enter the choice: 
+"); 
+    scanf("%d",&ch); 
+  switch(ch) 
+  { 
+  case 1: 
+      printf("Enter element 
+to be inserted at beginning: "); 
+      int num; 
+      scanf("%d",&num); 
+      atb(arr,&size,num); 
+      break; 
+  case 2: 
+      printf("Enter element 
+to be inserted at end: "); 
+      int num1; 
+      scanf("%d",&num1); 
+      
+atend(arr,&size,num1); 
+      break; 
+  case 3: 
+      printf("Enter element 
+to be inserted: "); 
+      int num2; 
+      scanf("%d",&num2); 
+      printf("Enter the 
+position: "); 
+      int position; 
+      scanf("%d",&position); 
+      
+atmiddle(arr,&size,num2,position); 
+  case 4: 
+      delbeg(arr,&size); 
+      break; 
+  case 5: 
+      delend(arr,&size); 
+      break; 
+  case 6: 
+      printf("Enter the 
+position: "); 
+      int position1; 
+      
+scanf("%d",&position1); 
+      
+delpos(arr,&size,position1); 
+      break; 
+  break; 
+ } 
+ } 
+return 0; 
+} 
+//at the beginning 
+void atb(int arr[],int *size,int element) 
+{ 
+ int i; 
+ for(i=*size;i>0;i--) 
+ { 
+  arr[i]=arr[i-1]; 
+   } 
+    (*size)++; 
+ 
+ arr[0]=element; 
+ for(i=0;i<*size;i++) 
+ { 
+  printf("%d ",arr[i]); 
+ } 
+ printf("\nArray size is: %d\n",*size); 
+} 
+//at end 
+void atend(int arr[],int *size,int element) 
+{ 
+ int i; 
+ arr[*size +1]=element; 
+ (*size)++; 
+ for(i=0;i<*size;i++) 
+ { 
+  printf("%d ",arr[i]); 
+ } 
+ printf("\nArray size is: %d\n",*size); 
+} 
+//at middle 
+void atmiddle(int arr[],int *size,int element,int 
+pos) 
+{ 
+   
+ int i; 
+ for(i=*size;i>pos-1;i--) 
+ { 
+  arr[i]=arr[i-1]; 
+ } 
+    (*size)++; 
+    arr[pos-1]=element; 
+ for(i=0;i<*size;i++) 
+ { 
+    printf("%d ",arr[i]); 
+ } 
+ printf("\nArray size is: %d\n",*size); 
+} 
+void delbeg(int arr[],int *size) 
+{ 
+ int i; 
+ for(i=0;i<*size;i++) 
+ { 
+  arr[i]=arr[i+1]; 
+   } 
+    (*size)--; 
+ for(i=0;i<*size;i++) 
+ { 
+  printf("%d ",arr[i]); 
+ } 
+ printf("\nArray size is: %d\n",*size); 
+} 
+void delend(int arr[],int *size) 
+{ 
+ int i; 
+ (*size)--; 
+ for(i=0;i<*size;i++) 
+ { 
+  printf("%d ",arr[i]); 
+ } 
+ printf("\nArray size is: %d\n",*size); 
+} 
+void delpos(int arr[],int *size,int pos) 
+{ 
+ int i; 
+ for(i=pos-1;i<*size;i++) 
+ { 
+  arr[i-1]=arr[i+1]; 
+   } 
+    (*size)--; 
+ for(i=0;i<*size;i++) 
+ { 
+ printf("%d ",arr[i]);  } 
+printf("\nArray size is: %d\n",*size);    }
