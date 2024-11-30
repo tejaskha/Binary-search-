@@ -1,0 +1,163 @@
+Insert_At_Beginning(node **q, int num)
+ {
+ node *temp;  
+temp=(node*)malloc(sizeof(node));  
+temp → data = num;
+ temp → next = *q;
+ *q=temp;
+ }
+
+Insert_At_Beginning(&head, 5)
+
+ Insert_At_End(node **q, int num)
+ {
+ node *temp, *r;
+ if(*q==NULL) //If the list is empty
+ {
+ temp=(node*)malloc(sizeof(node));  
+temp → data = num;
+ temp → next = NULL;
+ *q=temp;
+ }
+else
+ {
+ }
+ Insert_At_End()
+ r=*q;
+ //Go to last node
+ while(r → next !=NULL)  
+r=r → next
+ //Add node at the end  
+temp=(node*)malloc(sizeof(node));  
+temp → data = num;
+ temp → next = NULL;  
+r → next = temp;
+ }
+Insert_At_End(&head, 5)
+
+ Insert_At(node **q, int loc, intnum)
+ {
+ node *temp, *r;  
+int i=1;  
+temp=*q;  
+if(loc==1)
+ {
+ r=(node*)malloc(sizeof(node));
+ r → data = num;  
+r → next = *q;
+ *q=r;
+ }
+ Data Structures
+ 44
+Insert_At()
+ else if(loc>1)
+ {
+ while(i<loc-1) //Traverse the list
+ {
+ temp= temp → next;  
+i++;
+ if(temp → next ==NULL)
+ {
+ Print(“Less elements than specified”);  
+return;
+ }
+ }
+ Data Structures
+ 45
+Insert_At()
+ //Insert new node  
+r=(node*)malloc(sizeof(node));  
+r → data = num;
+ r → next = temp → next ;  
+temp → next =r;
+ }
+ else
+ {
+ printf("Please Enter Correct Position\n");
+ }
+ Data Structures
+ 46
+Insert_At()
+ Function Call  
+Insert_At(&head, 4, 15)
+
+Delete_First_Node(node **q)
+ {
+ if (*q == NULL)
+ Print(“No Element to Delete”);
+ else
+ {
+ node* temp = *q;
+ *q = temp → next;  
+free(temp);
+ }
+ }
+
+Delete_Last_Node(node **q)
+ {
+ node *r, *s;
+ if(*q==NULL) //If the list is empty
+ {
+ Print(“No Element to Delete”);
+ }
+ Data Structures
+ 52
+else
+ {
+ }
+ Delete_Last_Node()
+ s=*q;
+ //Go to last node
+ while(s → next !=NULL)
+ {
+ r=s;
+ s=s → next;
+ }
+ r → next = NULL;  
+free(s);
+ }
+ Data Structures
+ 53
+Delete_Last_Node()
+ Function Call  
+Delete_Last_Node(&head)
+
+Delete_At(node **q, intloc)
+ {
+ node *temp, *r;  
+temp=*q;
+ int i=1;  
+if(loc==1)
+ {
+ temp=*q;
+ *q=temp → next;  
+free(temp);
+ }
+ Data Structures
+ 56
+Delete_At()
+ else if(loc>1)
+ {
+ while(i<loc) //Traverse the list
+ {
+ r=temp;
+ temp= temp → next;  
+i++;
+ if(temp==NULL)
+ {
+ printf("Less elements thanspecified\n");  
+return;
+ }
+ }
+ Data Structures
+ 57
+Delete_At()
+ //Delete node
+ r → next=temp → next;  
+free(temp);
+ }
+ else
+ {
+ Print("Please Enter Correct Position\n");
+ }
+ }
